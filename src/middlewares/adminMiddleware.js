@@ -1,0 +1,25 @@
+
+const adminCheck = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            return res.status(403).json({ message: 'Access denied must be an admin' });
+        }
+        next();
+    }
+}
+
+
+/*
+const isAdmin = (req, res, next) => {
+    if (req.user.role !== 'admin') {
+        return res.status(403).json({ message: 'Unauthorized' });
+    }
+    next();
+}
+*/
+
+
+module.exports = adminCheck
+
+
+
